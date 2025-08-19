@@ -1,2 +1,6 @@
 fastapi
 uvicorn
+openai
+#pydantic пока что не используется
+#sqlalchemy
+#alembic
