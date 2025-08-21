@@ -1,23 +1,20 @@
-# Используем официальный образ Node.js
-FROM node:22-alpine
+# syntax=docker/dockerfile:1
 
-# Устанавливаем Angular CLI глобально
-RUN npm install -g @angular/cli
-
-# Устанавливаем рабочую директорию
-WORKDIR /app
-
-# Копируем файлы package.json и package-lock.json
+FROM node:22-alpine AS build
+WORKDIR /usr/src/app
 COPY package*.json ./
-
-# Устанавливаем зависимости проекта
-RUN npm install
-
-# Копируем исходный код приложения
+RUN npm ci
 COPY . .
+RUN npm run build   # даёт dist/<proj>/browser
 
-# Открываем порт для приложения
+FROM node:22-alpine
+ENV NODE_ENV=production
+WORKDIR /app
+RUN npm i -g serve@14
+
+# копируем именно browser; wildcard подхватит имя проекта
+COPY --from=build /usr/src/app/dist/*/browser/ ./
+
+USER node
 EXPOSE 4200
-
-# Команда для запуска приложения
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+CMD ["serve", "-s", ".", "-l", "tcp://0.0.0.0:4200"]
