@@ -13,6 +13,11 @@ app = FastAPI()
 @app.get("/")
 async def checkhealth():
     return {"Check": "Well"}
-@app.get("/test")
-async def test():
-    return auth.test()
+
+@app.get("/auth")
+async def get_auth_status():
+    pass
+
+@app.post("/chat")
+async def chat_with_ai():
+    pass
