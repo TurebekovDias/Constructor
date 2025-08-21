@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from datatime import datetime, timedelta
+from datetime import datetime, timedelta
 from jose import JWTError, jwt
 # from openai import OpenAI
 
