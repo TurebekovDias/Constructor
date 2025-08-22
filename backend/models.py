@@ -12,11 +12,12 @@ class Token(BaseModel):
     access_token: str
     token_type: str = "bearer"
 
-class SignUpSchema(BaseModel):
-    username: str
-    password: str
-    email: str
-
 class SignInSchema(BaseModel):
-    username: str
+    email: str
     password: str
+
+class SignUpSchema(SignInSchema):
+    username: str
+
+class TokenRequest(BaseModel):
+    token: str
