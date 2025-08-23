@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  backend:
+    # Указываем, что нужно собрать образ из папки ./backend
+    build: ./backend
+    container_name: fastapi-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      # Монтируем код для "горячей" перезагрузки в процессе разработки
+      - ./backend:/app
+    environment:
+      # Переменная для FastAPI (или Uvicorn), чтобы видеть изменения
+      - PYTHONUNBUFFERED=1
+      # Переменные для подключения к базе данных
+      - POSTGRES_USER=Dias
+      - POSTGRES_PASSWORD=ConstructorPass
+      - POSTGRES_DB=ConstructorDB
+      - POSTGRES_HOST=db
+    depends_on:
+      - db
+    restart: always
+
+  frontend:
+    # Указываем, что нужно собрать образ из папки ./frontend
+    build: ./front
+    container_name: angular-frontend
+    ports:
+      - "4200:4200"
+
+    restart: always
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:13-alpine
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=Dias
+      - POSTGRES_PASSWORD=ConstructorPass
+      - POSTGRES_DB=ConstructorDB
+    volumes:
+      # Именованный том для сохранения данных БД
+      - db_data:/var/lib/postgresql/data
+    restart: always
+
+# Определение томов
+volumes:
+  db_data:
