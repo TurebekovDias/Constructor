@@ -3,6 +3,8 @@ uvicorn
 openai
 passlib[bcrypt]
 python-jose[cryptography]
-#pydantic пока что не используется
+pyjwt
+pydantic
+jose
 #sqlalchemy
 #alembic
