@@ -17,7 +17,7 @@ services:
       - POSTGRES_USER=Dias
       - POSTGRES_PASSWORD=ConstructorPass
       - POSTGRES_DB=ConstructorDB
-      - POSTGRES_HOST=db
+      - POSTGRES_HOST=localhost
     depends_on:
       - db
     restart: always
