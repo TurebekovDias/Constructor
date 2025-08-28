@@ -1,14 +1,14 @@
 from sqlalchemy import String
 from sqlalchemy.orm import  Mapped, mapped_column
-from database import Base
+from src.database import Base
 
 
-class UserBase(Base):
+class User(Base):
     __tablename__ = "users"
 
     username: Mapped[str] = mapped_column(String(20))
     email: Mapped[str] = mapped_column(String, primary_key=True, unique=True, index=True)
-    password: Mapped[str] = mapped_column(String)
+    hashed_password: Mapped[str] = mapped_column(String)
 
 # for future use in history tracking
 # class HistoryBase(DeclarativeBase):

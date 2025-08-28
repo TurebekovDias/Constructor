@@ -7,3 +7,5 @@ pyjwt
 pydantic
 jose
 SQLAlchemy
+python-multipart
+psycopg2-binary
