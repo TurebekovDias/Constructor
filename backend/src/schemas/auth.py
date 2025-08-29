@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 class Token(BaseModel):
     access_token: str
@@ -9,4 +9,4 @@ class SignInSchema(BaseModel):
     password: str
 
 class SignUpSchema(SignInSchema):
-    email: str
+    email: EmailStr
