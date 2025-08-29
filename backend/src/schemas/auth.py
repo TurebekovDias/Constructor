@@ -9,4 +9,4 @@ class SignInSchema(BaseModel):
     password: str
 
 class SignUpSchema(SignInSchema):
-    email: EmailStr
+    email: str
