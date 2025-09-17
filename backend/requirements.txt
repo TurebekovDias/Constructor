@@ -3,9 +3,9 @@ uvicorn
 openai
 passlib[bcrypt]
 python-jose[cryptography]
-pyjwt
 pydantic
 jose
 SQLAlchemy
 python-multipart
 psycopg2-binary
+email-validator
