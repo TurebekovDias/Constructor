@@ -6,5 +6,6 @@ python-jose[cryptography]
 pyjwt
 pydantic
 jose
-#sqlalchemy
-#alembic
+SQLAlchemy
+python-multipart
+psycopg2-binary
